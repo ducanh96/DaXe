@@ -1,0 +1,518 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DaXe.vnModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Table_Car">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Image" Type="varchar" MaxLength="500" />
+          <Property Name="NumberPlates" Type="varchar" MaxLength="12" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Category" Type="nvarchar" MaxLength="50" />
+          <Property Name="Old" Type="float" />
+          <Property Name="LevelCar" Type="int" />
+          <Property Name="Service" Type="nvarchar" MaxLength="50" />
+          <Property Name="Routes" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Table_CarOwner">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Image" Type="nvarchar" MaxLength="200" />
+          <Property Name="BirthDay" Type="date" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Facebook" Type="nvarchar" MaxLength="200" />
+          <Property Name="Phone" Type="varchar" MaxLength="12" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="Address" Type="nvarchar" MaxLength="100" />
+          <Property Name="IDCar" Type="int" />
+        </EntityType>
+        <EntityType Name="Table_DetailedRoadmap">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LocationDetails" Type="nvarchar" MaxLength="2000" />
+          <Property Name="IDRoute" Type="int" />
+        </EntityType>
+        <EntityType Name="Table_Driver">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Image" Type="nvarchar" MaxLength="50" />
+          <Property Name="BirthDay" Type="date" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Facebook" Type="nvarchar" MaxLength="200" />
+          <Property Name="Phone" Type="varchar" MaxLength="12" />
+          <Property Name="Email" Type="nvarchar" MaxLength="200" />
+          <Property Name="Address" Type="nvarchar" MaxLength="200" />
+          <Property Name="IDCar" Type="int" />
+        </EntityType>
+        <EntityType Name="Table_Order">
+          <Key>
+            <PropertyRef Name="IDCar" />
+            <PropertyRef Name="IDUser" />
+          </Key>
+          <Property Name="IDCar" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDUser" Type="int" Nullable="false" />
+          <Property Name="DateTime" Type="date" />
+          <Property Name="Number" Type="int" />
+        </EntityType>
+        <EntityType Name="Table_Route">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Lat" Type="nvarchar" MaxLength="50" />
+          <Property Name="Long" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" />
+          <Property Name="IDCar" Type="int" />
+        </EntityType>
+        <EntityType Name="Table_User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Image" Type="nvarchar" MaxLength="50" />
+          <Property Name="BirthDay" Type="date" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Facebook" Type="nvarchar" MaxLength="100" />
+          <Property Name="Phone" Type="varchar" MaxLength="12" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="Address" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <Association Name="FK_Table_CarOwner_Table_Car">
+          <End Role="Table_Car" Type="Self.Table_Car" Multiplicity="0..1" />
+          <End Role="Table_CarOwner" Type="Self.Table_CarOwner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Car">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Table_CarOwner">
+              <PropertyRef Name="IDCar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_DetailedRoadmap_Table_Route">
+          <End Role="Table_Route" Type="Self.Table_Route" Multiplicity="0..1" />
+          <End Role="Table_DetailedRoadmap" Type="Self.Table_DetailedRoadmap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Route">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Table_DetailedRoadmap">
+              <PropertyRef Name="IDRoute" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_Driver_Table_Car">
+          <End Role="Table_Car" Type="Self.Table_Car" Multiplicity="0..1" />
+          <End Role="Table_Driver" Type="Self.Table_Driver" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Car">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Table_Driver">
+              <PropertyRef Name="IDCar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_Oder_Table_Car">
+          <End Role="Table_Car" Type="Self.Table_Car" Multiplicity="1" />
+          <End Role="Table_Order" Type="Self.Table_Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Car">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Table_Order">
+              <PropertyRef Name="IDCar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_Order_Table_User">
+          <End Role="Table_User" Type="Self.Table_User" Multiplicity="1" />
+          <End Role="Table_Order" Type="Self.Table_Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Table_Order">
+              <PropertyRef Name="IDUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_Route_Table_Car">
+          <End Role="Table_Car" Type="Self.Table_Car" Multiplicity="0..1" />
+          <End Role="Table_Route" Type="Self.Table_Route" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Car">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Table_Route">
+              <PropertyRef Name="IDCar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DaXevnModelStoreContainer">
+          <EntitySet Name="Table_Car" EntityType="Self.Table_Car" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_CarOwner" EntityType="Self.Table_CarOwner" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_DetailedRoadmap" EntityType="Self.Table_DetailedRoadmap" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_Driver" EntityType="Self.Table_Driver" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_Order" EntityType="Self.Table_Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_Route" EntityType="Self.Table_Route" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_User" EntityType="Self.Table_User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Table_CarOwner_Table_Car" Association="Self.FK_Table_CarOwner_Table_Car">
+            <End Role="Table_Car" EntitySet="Table_Car" />
+            <End Role="Table_CarOwner" EntitySet="Table_CarOwner" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_DetailedRoadmap_Table_Route" Association="Self.FK_Table_DetailedRoadmap_Table_Route">
+            <End Role="Table_Route" EntitySet="Table_Route" />
+            <End Role="Table_DetailedRoadmap" EntitySet="Table_DetailedRoadmap" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_Driver_Table_Car" Association="Self.FK_Table_Driver_Table_Car">
+            <End Role="Table_Car" EntitySet="Table_Car" />
+            <End Role="Table_Driver" EntitySet="Table_Driver" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_Oder_Table_Car" Association="Self.FK_Table_Oder_Table_Car">
+            <End Role="Table_Car" EntitySet="Table_Car" />
+            <End Role="Table_Order" EntitySet="Table_Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_Order_Table_User" Association="Self.FK_Table_Order_Table_User">
+            <End Role="Table_User" EntitySet="Table_User" />
+            <End Role="Table_Order" EntitySet="Table_Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_Route_Table_Car" Association="Self.FK_Table_Route_Table_Car">
+            <End Role="Table_Car" EntitySet="Table_Car" />
+            <End Role="Table_Route" EntitySet="Table_Route" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DaXe.vnModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Table_Car" EntityType="DaXe.vnModel.Table_Car" />
+          <EntitySet Name="Table_CarOwner" EntityType="DaXe.vnModel.Table_CarOwner" />
+          <EntitySet Name="Table_DetailedRoadmap" EntityType="DaXe.vnModel.Table_DetailedRoadmap" />
+          <EntitySet Name="Table_Driver" EntityType="DaXe.vnModel.Table_Driver" />
+          <EntitySet Name="Table_Order" EntityType="DaXe.vnModel.Table_Order" />
+          <EntitySet Name="Table_Route" EntityType="DaXe.vnModel.Table_Route" />
+          <EntitySet Name="Table_User" EntityType="DaXe.vnModel.Table_User" />
+          <AssociationSet Name="FK_Table_CarOwner_Table_Car" Association="DaXe.vnModel.FK_Table_CarOwner_Table_Car">
+            <End Role="Table_Car" EntitySet="Table_Car" />
+            <End Role="Table_CarOwner" EntitySet="Table_CarOwner" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_Driver_Table_Car" Association="DaXe.vnModel.FK_Table_Driver_Table_Car">
+            <End Role="Table_Car" EntitySet="Table_Car" />
+            <End Role="Table_Driver" EntitySet="Table_Driver" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_Oder_Table_Car" Association="DaXe.vnModel.FK_Table_Oder_Table_Car">
+            <End Role="Table_Car" EntitySet="Table_Car" />
+            <End Role="Table_Order" EntitySet="Table_Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_Route_Table_Car" Association="DaXe.vnModel.FK_Table_Route_Table_Car">
+            <End Role="Table_Car" EntitySet="Table_Car" />
+            <End Role="Table_Route" EntitySet="Table_Route" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_DetailedRoadmap_Table_Route" Association="DaXe.vnModel.FK_Table_DetailedRoadmap_Table_Route">
+            <End Role="Table_Route" EntitySet="Table_Route" />
+            <End Role="Table_DetailedRoadmap" EntitySet="Table_DetailedRoadmap" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_Order_Table_User" Association="DaXe.vnModel.FK_Table_Order_Table_User">
+            <End Role="Table_User" EntitySet="Table_User" />
+            <End Role="Table_Order" EntitySet="Table_Order" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Table_Car">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Image" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="NumberPlates" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Old" Type="Double" />
+          <Property Name="LevelCar" Type="Int32" />
+          <Property Name="Service" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Routes" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Table_CarOwner" Relationship="DaXe.vnModel.FK_Table_CarOwner_Table_Car" FromRole="Table_Car" ToRole="Table_CarOwner" />
+          <NavigationProperty Name="Table_Driver" Relationship="DaXe.vnModel.FK_Table_Driver_Table_Car" FromRole="Table_Car" ToRole="Table_Driver" />
+          <NavigationProperty Name="Table_Order" Relationship="DaXe.vnModel.FK_Table_Oder_Table_Car" FromRole="Table_Car" ToRole="Table_Order" />
+          <NavigationProperty Name="Table_Route" Relationship="DaXe.vnModel.FK_Table_Route_Table_Car" FromRole="Table_Car" ToRole="Table_Route" />
+        </EntityType>
+        <EntityType Name="Table_CarOwner">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Image" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="BirthDay" Type="DateTime" Precision="0" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Facebook" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IDCar" Type="Int32" />
+          <NavigationProperty Name="Table_Car" Relationship="DaXe.vnModel.FK_Table_CarOwner_Table_Car" FromRole="Table_CarOwner" ToRole="Table_Car" />
+        </EntityType>
+        <EntityType Name="Table_DetailedRoadmap">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LocationDetails" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="IDRoute" Type="Int32" />
+          <NavigationProperty Name="Table_Route" Relationship="DaXe.vnModel.FK_Table_DetailedRoadmap_Table_Route" FromRole="Table_DetailedRoadmap" ToRole="Table_Route" />
+        </EntityType>
+        <EntityType Name="Table_Driver">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BirthDay" Type="DateTime" Precision="0" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Facebook" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IDCar" Type="Int32" />
+          <NavigationProperty Name="Table_Car" Relationship="DaXe.vnModel.FK_Table_Driver_Table_Car" FromRole="Table_Driver" ToRole="Table_Car" />
+        </EntityType>
+        <EntityType Name="Table_Order">
+          <Key>
+            <PropertyRef Name="IDCar" />
+            <PropertyRef Name="IDUser" />
+          </Key>
+          <Property Name="IDCar" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDUser" Type="Int32" Nullable="false" />
+          <Property Name="DateTime" Type="DateTime" Precision="0" />
+          <Property Name="Number" Type="Int32" />
+          <NavigationProperty Name="Table_Car" Relationship="DaXe.vnModel.FK_Table_Oder_Table_Car" FromRole="Table_Order" ToRole="Table_Car" />
+          <NavigationProperty Name="Table_User" Relationship="DaXe.vnModel.FK_Table_Order_Table_User" FromRole="Table_Order" ToRole="Table_User" />
+        </EntityType>
+        <EntityType Name="Table_Route">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Lat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Long" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IDCar" Type="Int32" />
+          <NavigationProperty Name="Table_Car" Relationship="DaXe.vnModel.FK_Table_Route_Table_Car" FromRole="Table_Route" ToRole="Table_Car" />
+          <NavigationProperty Name="Table_DetailedRoadmap" Relationship="DaXe.vnModel.FK_Table_DetailedRoadmap_Table_Route" FromRole="Table_Route" ToRole="Table_DetailedRoadmap" />
+        </EntityType>
+        <EntityType Name="Table_User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BirthDay" Type="DateTime" Precision="0" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Facebook" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Table_Order" Relationship="DaXe.vnModel.FK_Table_Order_Table_User" FromRole="Table_User" ToRole="Table_Order" />
+        </EntityType>
+        <Association Name="FK_Table_CarOwner_Table_Car">
+          <End Type="DaXe.vnModel.Table_Car" Role="Table_Car" Multiplicity="0..1" />
+          <End Type="DaXe.vnModel.Table_CarOwner" Role="Table_CarOwner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Car">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Table_CarOwner">
+              <PropertyRef Name="IDCar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_Driver_Table_Car">
+          <End Type="DaXe.vnModel.Table_Car" Role="Table_Car" Multiplicity="0..1" />
+          <End Type="DaXe.vnModel.Table_Driver" Role="Table_Driver" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Car">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Table_Driver">
+              <PropertyRef Name="IDCar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_Oder_Table_Car">
+          <End Type="DaXe.vnModel.Table_Car" Role="Table_Car" Multiplicity="1" />
+          <End Type="DaXe.vnModel.Table_Order" Role="Table_Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Car">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Table_Order">
+              <PropertyRef Name="IDCar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_Route_Table_Car">
+          <End Type="DaXe.vnModel.Table_Car" Role="Table_Car" Multiplicity="0..1" />
+          <End Type="DaXe.vnModel.Table_Route" Role="Table_Route" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Car">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Table_Route">
+              <PropertyRef Name="IDCar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_DetailedRoadmap_Table_Route">
+          <End Type="DaXe.vnModel.Table_Route" Role="Table_Route" Multiplicity="0..1" />
+          <End Type="DaXe.vnModel.Table_DetailedRoadmap" Role="Table_DetailedRoadmap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Route">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Table_DetailedRoadmap">
+              <PropertyRef Name="IDRoute" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_Order_Table_User">
+          <End Type="DaXe.vnModel.Table_User" Role="Table_User" Multiplicity="1" />
+          <End Type="DaXe.vnModel.Table_Order" Role="Table_Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Table_Order">
+              <PropertyRef Name="IDUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DaXevnModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Table_Car">
+            <EntityTypeMapping TypeName="DaXe.vnModel.Table_Car">
+              <MappingFragment StoreEntitySet="Table_Car">
+                <ScalarProperty Name="Routes" ColumnName="Routes" />
+                <ScalarProperty Name="Service" ColumnName="Service" />
+                <ScalarProperty Name="LevelCar" ColumnName="LevelCar" />
+                <ScalarProperty Name="Old" ColumnName="Old" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="NumberPlates" ColumnName="NumberPlates" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_CarOwner">
+            <EntityTypeMapping TypeName="DaXe.vnModel.Table_CarOwner">
+              <MappingFragment StoreEntitySet="Table_CarOwner">
+                <ScalarProperty Name="IDCar" ColumnName="IDCar" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Facebook" ColumnName="Facebook" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="BirthDay" ColumnName="BirthDay" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_DetailedRoadmap">
+            <EntityTypeMapping TypeName="DaXe.vnModel.Table_DetailedRoadmap">
+              <MappingFragment StoreEntitySet="Table_DetailedRoadmap">
+                <ScalarProperty Name="IDRoute" ColumnName="IDRoute" />
+                <ScalarProperty Name="LocationDetails" ColumnName="LocationDetails" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_Driver">
+            <EntityTypeMapping TypeName="DaXe.vnModel.Table_Driver">
+              <MappingFragment StoreEntitySet="Table_Driver">
+                <ScalarProperty Name="IDCar" ColumnName="IDCar" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Facebook" ColumnName="Facebook" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="BirthDay" ColumnName="BirthDay" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_Order">
+            <EntityTypeMapping TypeName="DaXe.vnModel.Table_Order">
+              <MappingFragment StoreEntitySet="Table_Order">
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+                <ScalarProperty Name="IDUser" ColumnName="IDUser" />
+                <ScalarProperty Name="IDCar" ColumnName="IDCar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_Route">
+            <EntityTypeMapping TypeName="DaXe.vnModel.Table_Route">
+              <MappingFragment StoreEntitySet="Table_Route">
+                <ScalarProperty Name="IDCar" ColumnName="IDCar" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Long" ColumnName="Long" />
+                <ScalarProperty Name="Lat" ColumnName="Lat" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_User">
+            <EntityTypeMapping TypeName="DaXe.vnModel.Table_User">
+              <MappingFragment StoreEntitySet="Table_User">
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Facebook" ColumnName="Facebook" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="BirthDay" ColumnName="BirthDay" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

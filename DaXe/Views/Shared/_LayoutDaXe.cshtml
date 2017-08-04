@@ -1,0 +1,522 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <!-- Your Basic Site Informations -->
+    <title>Daxe.vn - Kết nối mọi nẻo đường</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Unicom is a multi-purpose site template that built-in professional fully responsive design, elegant style, smooth-animation and have a slew of features.">
+    <meta name="keywords" content="Site Template, One Page Template, Responsive Template, Clean Design, Multi Purpose, Business Template, Corporate Template, App Template, Conversion Template, Smooth Animation, HTML5, CSS3, jQuery">
+    <meta name="author" content="VTDVN.NET">
+
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700%7CRoboto:100,300,300i,400,400i,500,700,900" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="@Url.Content("~/Content/")css/ionicons.min.css">
+    <link rel="stylesheet" href="@Url.Content("~/Content/")css/jquery.scrollbar.css">
+    <link rel="stylesheet" href="@Url.Content("~/Content/")css/slick.css">
+    <link rel="stylesheet" href="@Url.Content("~/Content/")css/slick-theme.css">
+    <link rel="stylesheet" href="@Url.Content("~/Content/")css/jquery.fancybox.css">
+    <link rel="stylesheet" href="@Url.Content("~/Content/")css/animate.min.css">
+    <link rel="stylesheet" href="@Url.Content("~/Content/")css/style.css">
+
+    <!-- Custom Colors -->
+    <!--<link rel="stylesheet" href="css/colors/blue/color.css">-->
+    <!--<link rel="stylesheet" href="css/colors/orange/color.css">-->
+    <!--<link rel="stylesheet" href="css/colors/pink/color.css">-->
+    <!--<link rel="stylesheet" href="css/colors/purple/color.css">-->
+    <!--<link rel="stylesheet" href="css/colors/yellow/color.css">-->
+    <!--[if lt IE 9]>
+        <script src="js/html5.js"></script>
+        <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+        <link rel="stylesheet" href="css/ie-older.css">
+    <![endif]-->
+
+    <noscript><link rel="stylesheet" href="@Url.Content("~/Content/")css/no-js.css"></noscript>
+
+    <!-- Favicons -->
+    <link rel="shortcut icon" href="@Url.Content("~/Content/")images/favicon.ico">
+    <link rel="apple-touch-icon" href="@Url.Content("~/Content/")images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="@Url.Content("~/Content/")images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="@Url.Content("~/Content/")images/apple-touch-icon-114x114.png">
+
+    <style type="text/css">
+        .page .page-content {
+            margin-bottom: 0px;
+        }
+    </style>
+
+</head>
+
+<body class="body-header-transparent">
+    <!-- #nav-mobile -->
+    <nav id="nav-mobile">
+        <div class="scrollbar-inner">
+            <button type="button" class="navbar-btn-close"><i class="ion ion-close"></i>Close</button>
+            <div class="navbar-menu">
+                <ul class="nav">
+                    <li class="menu-item current-menu-item">
+                        <a href="index.html">Trang chủ</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="about-us.html">Giới thiệu</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="ticketCheck.html">Kiểm tra vé xe</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="ticketCancel.html">Hủy vé xe</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="listNews.html">Tin tức</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="services.html">Dịch vụ</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="guide.html">Hướng dẫn</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="contact.html">Liên hệ</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" data-toggle="modal" data-target="#myModal">Đăng ký</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" data-toggle="modal" data-target="#myModalLinh">Đăng nhập</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- #nav-mobile end -->
+    <!-- #body-wrap -->
+    <div id="body-wrap">
+        <!-- #header -->
+        <header id="header" class="header-transparent">
+            <!-- #nav-mobile-top -->
+            <div id="nav-mobile-top">
+                <!-- .container -->
+                <div class="container-fluid">
+                    <div class="navmenu">
+                        <button type="button" class="navbar-btn-toggle"><i class="ion ion-navicon"></i></button>
+                        <div class="navbar-logo">
+                            <a href="index.html"><img src="@Url.Content("~/Content/")images/logo.png" alt="Logo"></a>
+                            <!-- site logo -->
+                        </div>
+                        <div class="navbar-secondary">
+                            <div class="navbar-btn">
+                                <a href="cart.html" class="btn-cart"><i class="ion ion-bag"></i></a>
+                                <a href="#" class="btn-search"><i class="ion ion-ios-search-strong"></i></a>
+                            </div>
+                            <form action="#" method="GET">
+                                <input type="text" name="s" placeholder="To Search start typing...." autocomplete="off">
+                                <button type="button" class="btn-close"><i class="ion ion-android-close"></i></button>
+                            </form>
+                            <div class="navbar-cart">
+                                <div class="cart-heading">
+                                    <p class="cart-count">2 item(s)</p>
+                                    <p class="cart-price">$79.00</p>
+                                </div>
+                                <ul class="cart-list">
+                                    <li>
+                                        <a href="#" class="cart-btn-close">×</a>
+                                        <img src="@Url.Content("~/Content/")images/content/portfolios/square/1.jpg" alt="Thumbnail">
+                                        <div class="cart-content">
+                                            <p>1 x<span>$30</span></p>
+                                            <a href="#">Black Leather Dress</a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="cart-btn-close">×</a>
+                                        <img src="@Url.Content("~/Content/")images/content/portfolios/square/2.jpg" alt="Thumbnail">
+                                        <div class="cart-content">
+                                            <p>1 x<span>$30</span></p>
+                                            <a href="#">Black Leather Dress</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div class="cart-footer">
+                                    <a href="#" class="btn-custom btn-grey">View Cart</a>
+                                    <a href="#" class="btn-custom">Checkout</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- .container end -->
+            </div>
+            <!-- #nav-mobile-top end -->
+            <!-- #navigation -->
+            <nav id="navigation">
+                <!-- .navbar -->
+                <div class="navbar">
+                    <!-- .container -->
+                    <div class="container">
+                        <div class="navbar-wrap">
+                            <div class="navbar-logo">
+                                <!-- site logo -->
+                                <div class="navbar-logo-wrap">
+                                    <a href="index.html" class="logo">
+                                        <img alt="mobihome" src="@Url.Content("~/Content/")images/logo.png" style="height:50px;">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="navbar-menu">
+                                <ul class="nav">
+                                    <li class="menu-item current-menu-item">
+                                        <a href="index.html">Trang chủ</a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="about-us.html">Giới thiệu</a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="ticketCheck.html">Kiểm tra vé xe</a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="ticketCancel.html">Hủy vé xe</a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="listNews.html">Tin tức</a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="services.html">Dịch vụ</a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="guide.html">Hướng dẫn</a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="contact.html">Liên hệ</a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="#" data-toggle="modal" data-target="#myModal">Đăng ký</a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="#" data-toggle="modal" data-target="#myModalLinh">Đăng nhập</a>
+                                    </li>
+                                </ul>
+                                <div class="navbar-secondary">
+                                    <div class="navbar-btn">
+                                        <a href="cart.html" class="btn-cart"><i class="ion ion-bag"></i></a>
+                                        <a href="#" class="btn-search"><i class="ion ion-ios-search-strong"></i></a>
+                                    </div>
+                                    <form action="#" method="GET">
+                                        <input type="text" name="s" placeholder="To Search start typing...." autocomplete="off">
+                                        <button type="button" class="btn-close"><i class="ion ion-android-close"></i></button>
+                                    </form>
+                                    <div class="navbar-cart">
+                                        <div class="cart-heading">
+                                            <p class="cart-count">2 Vé được đặt</p>
+                                            <p class="cart-price">Thông tin</p>
+                                        </div>
+                                        <ul class="cart-list">
+                                            <li>
+                                                <a href="#" class="cart-btn-close">×</a>
+                                                <img src="@Url.Content("~/Content/")images/content/portfolios/thumb/4.jpg" alt="Thumbnail">
+                                                <div class="cart-content">
+                                                    <p>1 x<span>$90</span></p>
+                                                    <a href="#">Nhà Xe Hân Trang</a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="cart-btn-close">×</a>
+                                                <img src="@Url.Content("~/Content/")images/content/portfolios/thumb/5.jpg" alt="Thumbnail">
+                                                <div class="cart-content">
+                                                    <p>1 x<span>$100</span></p>
+                                                    <a href="#">Nhà Xe Hồng Hạnh</a>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <div class="cart-footer">
+                                            <a href="#" class="btn-custom btn-grey">View Cart</a>
+                                            <a href="#" class="btn-custom">Checkout</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- .container end -->
+                </div>
+                <!-- .navbar end -->
+            </nav>
+            <!-- #navigation end -->
+            <!-- #modal đăng ký -->
+            <div class="modal fade" id="myModal" role="dialog" tabindex="-1" aria-labelledby="mediumModalLabel">
+                <!-- 2 -->
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="mediumModalLabel">Đăng ký</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-horizontal">
+
+                                <div class="form-group">
+                                    <label for="Name" class="col-lg-4 control-label">Họ tên</label>
+                                    <div class="col-lg-7">
+                                        <input type="text" class="form-control" id="Name" placeholder="Nhập họ tên">
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label">Ngày sinh</label>
+                                    <div class='date col-lg-7' id='datetimepicker4'>
+                                        <input type='date' class="form-control" />
+
+                                    </div>
+                                    <div class="clearfix"></div>
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label">Giới tính</label>
+                                    <div class="col-lg-7">
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="Nam" checked="">
+                                                Nam
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="Nữ">
+                                                Nữ
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputTel" class="col-lg-4 control-label">Số điện thoại</label>
+                                    <div class="col-lg-7">
+                                        <input type="text" class="form-control" id="inputTel" placeholder="Nhập số điện thoại">
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPassword" class="col-lg-4 control-label">Mật khẩu</label>
+                                    <div class="col-lg-7">
+                                        <input type="password" class="form-control" id="inputPassword" placeholder="Nhập mật khẩu">
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ComfirmPassword" class="col-lg-4 control-label">Nhập lại mật khẩu</label>
+                                    <div class="col-lg-7">
+                                        <input type="password" class="form-control" id="ComfirmPassword" placeholder="Nhập lại mật khẩu">
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+
+
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn-grey" data-dismiss="modal">Close</button>
+                            <button type="button">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- #modal đăng nhập -->
+            <div class="modal fade" id="myModalLinh" role="dialog" tabindex="-1" aria-labelledby="mediumModalLabel">
+                <!-- 2 -->
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content" style="width:400px">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="mediumModalLabel">Đăng nhập</h4>
+
+
+                        </div>
+                        <div class="modal-body" align="center">
+                            <form class="form-horizontal">
+
+                                <div class="form-group">
+
+                                    <div class="col-lg-7" style="width:400px">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                            <input type="text" class="form-control" id="inputTel" placeholder="Nhập số điện thoại">
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="form-group">
+
+                                    <div class="col-lg-7" style="width:400px">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                            <input type="password" class="form-control" id="inputPassword" placeholder="Nhập mật khẩu">
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+
+                                <label><input type="checkbox" style="margin-left:-95px"> Ghi nhớ đăng nhập</label>
+                                <a href="#" style="color:red; float: right">Quên mật khẩu ?</a>
+
+
+                                <br />
+                                <br />
+                                <button type="button" style="width:100%; text-align:center">Đăng nhập</button>
+                                <br />
+                                <br />
+                                <label style="float: center"> Hoặc đăng nhập bằng: </label>
+                                <br />
+                                <br />
+                                <a href="https://accounts.google.com/ServiceLogin?service=mail&passive=true&rm=false&continue=https://mail.google.com/mail/&ss=1&scc=1&ltmpl=default&ltmplcache=2&emr=1&osid=1#"><img src="@Url.Content("~/Content/")images/Google-plus-icon-300x300.png" width="40" height="40" /></a>
+                                <a href="https://www.facebook.com/"><img src="@Url.Content("~/Content/")images/facebook-icon.png" width="40" height="40" /></a>
+
+
+                            </form>
+                        </div>
+
+                        <div class="modal-footer" style="text-align:left">
+                            <label class="">Bạn chưa có tài khoản: </label>
+                            <a href="#" data-toggle="modal" data-target="#myModal" data-dismiss="modal" aria-label="Close" id="dangkyngay" style="color:red; float: right">Đăng ký ngay</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- .header-content2 -->
+            @RenderSection("MapAndForm",required:false)
+      
+            <!-- .header-content2 end -->
+        </header>
+        <!-- #header end -->
+        @RenderBody()
+    <div id="bottom">
+        <!-- .container -->
+        <div class="container">
+            <!-- .footer-widgets -->
+            <div class="footer-widgets">
+                <!-- .row -->
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="widget">
+                            <div class="widget_text">
+                                <h4 class="widget-title">Giới thiệu về daxe.vn</h4>
+                                <p>DAXE.VN đang là công cụ hữu ích cho khách hàng khi tìm các lộ trình xe và đặt mua vé nhanh chóng và chính xác.</p>
+                                <p>Sứ mệnh của chúng tôi là giúp hàng triệu người Việt Nam có thể đặt mua vé và tiện lợi nhất.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="widget">
+                            <div class="affa-subscribe-widget">
+                                <h4 class="widget-title">Đăng ký nhận bản tin</h4>
+                                <p>Bạn nhập địa chỉ Email để có những tin mới nhất chúng tôi sẽ gửi cho bạn về DAXE.VN.</p>
+                                <form method="post" action="#" class="affa-form-subscribe">
+                                    <input type="text" name="email" placeholder="Địa chỉ Email">
+                                    <input type="submit" name="submit" value="Đăng ký">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="widget">
+                            <div class="widget_text">
+                                <h4 class="widget-title">Thông tin liên hệ</h4>
+                                <div class="list-icon">
+                                    <ul>
+                                        <li><i class="ion ion-ios-telephone"></i>+(84) 974 629 771</li>
+                                        <li><i class="ion ion-ios-email"></i><a href="#">support@daxe.vn</a></li>
+                                        <li><i class="ion ion-map"></i>Số A12 Nghĩa Tân - Cầu Giấy - Hà Nội</li>
+                                        <li><i class="ion ion-android-phone-portrait"></i>+(84) 989 202 368</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- .row end -->
+            </div>
+            <!-- .footer-widgets end -->
+        </div>
+        <!-- .container end -->
+    </div>
+    <!-- #bottom end -->
+    <!-- #footer -->
+    <footer id="footer">
+        <!-- .container -->
+        <div class="container">
+            <div class="footer-nav">
+                <ul>
+                    <li><a href="pathner.html">Đăng ký làm đối tác</a></li>
+                    <li><a href="dieukhoan.html">Điều khoản sử dụng</a></li>
+                    <li><a href="sercurity.html">Cam kết bản mật</a></li>
+                </ul>
+                <p>DAXE.VN -  All rights reserved &copy; 2017 by <a href="../../../index.html" target="_blank">VTDVN.NET</a></p>
+            </div>
+            <div class="footer-socials">
+                <ul>
+                    <li><a href="#" title="Facebook"><i class="ion ion-social-facebook"></i></a></li>
+                    <li><a href="#" title="Google Plus"><i class="ion ion-social-googleplus"></i></a>
+                    <li><a href="#" title="Youtube"><i class="ion ion-social-youtube"></i></a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- .container end -->
+    </footer>
+    <!-- #footer end -->
+    </div>
+    <!-- #body-wrap end -->
+    <a href="#" class="scrollup" title="Back to Top!"><i class="ion ion-android-arrow-up"></i></a>
+    <!-- Back to Top -->
+    <!--[if lt IE 8]>
+        <div class="browser-notice">
+            <div class="container">
+                <div class="text">
+                    <h1>Internet Explorer Out To Date</h1>
+                    <p>Please update your Internet Explorer browser with a newer version (Internet Explorer 8 above) now!</p>
+                    <span>You can download it <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie" target="_blank">here....</a></span>
+                </div>
+            </div>
+        </div>
+    <![endif]-->
+    <!-- JavaScripts -->
+    <!-- JavaScripts -->
+    <script type="text/javascript" src="@Url.Content("~/Content/")js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/")js/jquery-migrate-1.4.1.min.js"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/")js/jquery.easing.min.js"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/")js/jquery.plugin.min.js"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/")js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/")js/response.min.js"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/")js/waypoints.min.js"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/")js/jquery.scroll-with-ease.js"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/")js/jquery.placeholder.min.js"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/")js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/")js/jquery.mousewheel-3.0.6.pack.js"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/")js/jquery.scrollbar.min.js"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/")js/parallax.min.js"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/")js/isotope.pkgd.min.js"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/")js/slick.min.js"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/")js/jquery.fancybox.pack.js"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/")js/jquery.fancybox-media.js"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/")js/jquery.counterup.min.js"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/")js/jquery.countdown.min.js"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/")js/script.js"></script>
+
+
+    @RenderSection("ScriptMap",false)
+
+
+</body>
+
+</html>

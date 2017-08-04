@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="da6e44118a444fcfb0c9c66689a0397b" Name="Diagram1">
+        <EntityTypeShape EntityType="DaXe.vnModel.Table_Car" Width="1.5" PointX="1.875" PointY="7.125" />
+        <EntityTypeShape EntityType="DaXe.vnModel.Table_CarOwner" Width="1.5" PointX="4.125" PointY="4" />
+        <EntityTypeShape EntityType="DaXe.vnModel.Table_DetailedRoadmap" Width="1.5" PointX="6.375" PointY="14.625" />
+        <EntityTypeShape EntityType="DaXe.vnModel.Table_Driver" Width="1.5" PointX="4.125" PointY="10.625" />
+        <EntityTypeShape EntityType="DaXe.vnModel.Table_Order" Width="1.5" PointX="7.125" PointY="7.75" />
+        <EntityTypeShape EntityType="DaXe.vnModel.Table_Route" Width="1.5" PointX="4.125" PointY="14.25" />
+        <EntityTypeShape EntityType="DaXe.vnModel.Table_User" Width="1.5" PointX="4.875" PointY="0.5" />
+        <AssociationConnector Association="DaXe.vnModel.FK_Table_CarOwner_Table_Car" />
+        <AssociationConnector Association="DaXe.vnModel.FK_Table_Driver_Table_Car" />
+        <AssociationConnector Association="DaXe.vnModel.FK_Table_Oder_Table_Car" />
+        <AssociationConnector Association="DaXe.vnModel.FK_Table_Route_Table_Car" />
+        <AssociationConnector Association="DaXe.vnModel.FK_Table_DetailedRoadmap_Table_Route" />
+        <AssociationConnector Association="DaXe.vnModel.FK_Table_Order_Table_User" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

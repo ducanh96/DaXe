@@ -1,0 +1,986 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutDaXe.cshtml";
+}
+
+@section MapAndForm{
+<div class="header-content2" data-parallax="scroll" data-speed="0.2" data-natural-width="1920" data-natural-height="1080">
+    <div class="header-content-overlay bg-dark-overlay40">
+        <div id="map" class="embed-map">
+        </div>
+        <div class="header-content-form dialoghehe">
+            <div class="header-form-wrap">
+                <div class="submit-status"></div>
+                <!-- submit status -->
+
+                <form method="post" action="#" class="affa-form-signup">
+                    <input type="text" name="email" id="header_form_email" placeholder="Điểm đi">
+                    <input type="text" name="email" id="header_form_email" placeholder="Điểm đến">
+                    <input type="text" name="email" id="header_form_email" placeholder="Số người đi">
+                    <input id="departDate" readonly="" name="departDate" type="text" class="input-txt date hasDatepicker" placeholder="Chọn ngày đi" accesskey="3" tabindex="3" autocomplete="off">
+                    <input type="submit" name="submit" value="Tìm xe" class="btn-medium">
+                </form>
+                <p class="text-desc">Nếu có bất kỳ vấn đề gì trong quá trình tìm lộ trình, xin vui lòng liên hệ <a href="#">0974 629 771</a> để được hỗ trợ.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    }
+
+
+@section ScriptMap{
+        <!-- Current Page Scripts -->
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcIZEwUDQBkHOlrlXgzxNzVgLYdl-dw3Q"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/")js/gmaps.js"></script>
+<script>
+        function initMap() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 16,
+                center: { lat: 21.031588, lng: 105.782317 }
+            });
+
+            setMarkers(map);
+        }
+
+        var beaches = [
+            ['Bondi Beach', 21.031588, 105.782317, 4],
+            ['Coogee Beach', 21.028430, 105.778269, 5],
+            ['Cronulla Beach', 21.036474, 105.790169, 3],
+            ['Manly Beach', 21.030596, 105.786215, 2],
+            ['Maroubra Beach', 20.964830, 105.841806, 1]
+        ];
+
+        function setMarkers(map) {
+            // Adds markers to the map.
+
+            // Marker sizes are expressed as a Size of X,Y where the origin of the image
+            // (0,0) is located in the top left of the image.
+
+            // Origins, anchor positions and coordinates of the marker increase in the X
+            // direction to the right and in the Y direction down.
+
+            var image = {
+                url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+                // This marker is 20 pixels wide by 32 pixels high.
+                size: new google.maps.Size(20, 32),
+                // The origin for this image is (0, 0).
+                origin: new google.maps.Point(0, 0),
+                // The anchor for this image is the base of the flagpole at (0, 32).
+                anchor: new google.maps.Point(0, 32)
+            };
+
+            // Shapes define the clickable region of the icon. The type defines an HTML
+            // <area> element 'poly' which traces out a polygon as a series of X,Y points.
+            // The final coordinate closes the poly by connecting to the first coordinate.
+            var shape = {
+                coords: [1, 1, 1, 20, 18, 20, 18, 1],
+                type: 'poly'
+            };
+            for (var i = 0; i < beaches.length; i++) {
+                var beach = beaches[i];
+                var marker = new google.maps.Marker({
+                    position: { lat: beach[1], lng: beach[2] },
+                    map: map,
+                    icon: image,
+                    shape: shape,
+                    title: beach[0],
+                    zIndex: beach[3]
+                });
+            }
+
+            infoWindow = new google.maps.InfoWindow;
+
+            // Try HTML5 geolocation.
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    var pos = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+                    var marker = new google.maps.Marker({ map: map, position: pos, icon: image });
+                    marker.addListener('click', function () {
+                        infowindow.open(map, marker);
+                    });
+                    infoWindow.setPosition(pos);
+                    infoWindow.setContent('vị trí của bạn hiện tại.');
+                    infoWindow.open(map);
+                    map.setCenter(pos);
+                }, function () {
+                    handleLocationError(true, infoWindow, map.getCenter());
+                });
+            } else {
+                // Browser doesn't support Geolocation
+                handleLocationError(false, infoWindow, map.getCenter());
+            }
+        }
+
+        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+            infoWindow.setPosition(pos);
+            infoWindow.setContent(browserHasGeolocation ?
+                'Error: The Geolocation service failed.' :
+                'Error: Your browser doesn\'t support geolocation.');
+            //infoWindow.open(map, setMarkers);
+        }
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0o632gUJy5ugFTQ7YtmDkku_uTRLlBgg&callback=initMap">
+</script>
+
+    }
+
+ <!-- #portfolio -->
+<div class="container padding-top80 padding-bottom40">
+
+    <nav class="isotope-menu">
+        <a href="#" class="active" data-filter="*">Tất cả</a>
+        <a href="#" data-filter=".vip">Xe VIP</a>
+        <a href="#" data-filter=".goodies">Xe xác thực</a>
+        <a href="#" data-filter=".quality">Xe chất lượng</a>
+        <a href="#" data-filter=".hot">Xe nhiều lượt đi</a>
+        <a href="#" data-filter=".new">Xe mới</a>
+    </nav>
+
+    <!-- .row -->
+    <div class="isotope-row row">
+
+        <div class="col-sm-3 print vip">
+            <!-- 1 -->
+            <div class="affa-portfolio">
+                <figure class="post-thumbnail post-item-thumbnail img-hover3">
+                    <img src="@Url.Content("~/Content/")images/content/portfolios/thumb/1.jpg" alt="">
+                    <img src="@Url.Content("~/Content/")images/content/icon/icon_hot.png" alt="hot" class="icon-hot">
+                    <div class="overlay-masked">
+                        <a href="#" class="link-left" title="Live Preview"><i class="ion ion-eye"></i></a>
+                        <a href="#" class="link-right" title="More Details"><i class="ion ion-android-open"></i></a>
+                    </div>
+                </figure>
+                <div class="post-item-txt">
+                    <h4 class="entry-title post-item-title">
+                        <a href="#">Nhà Xe Hoàng Long</a>
+                    </h4>
+                    <div class="entry-meta post-item-meta">
+                        <a href="#">Hà Nội</a> <span>-</span> <a href="#">Thanh Hóa</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-3 vip quality">
+            <!-- 2 -->
+            <div class="affa-portfolio">
+                <figure class="post-thumbnail post-item-thumbnail img-hover3">
+                    <img src="@Url.Content("~/Content/")images/content/portfolios/thumb/2.jpg" alt="Stockholm Fashion">
+                    <img src="@Url.Content("~/Content/")images/content/icon/icon_hot.png" alt="hot" class="icon-hot">
+                    <div class="overlay-masked">
+                        <a href="#" class="link-left" title="Live Preview"><i class="ion ion-eye"></i></a>
+                        <a href="#" class="link-right" title="More Details"><i class="ion ion-android-open"></i></a>
+                    </div>
+                </figure>
+                <div class="post-item-txt">
+                    <h4 class="entry-title post-item-title">
+                        <a href="#">Nhà Xe Minh Tâm</a>
+                    </h4>
+                    <div class="entry-meta post-item-meta">
+                        <a href="#">Hà Nội</a> <span>-</span> <a href="#">Sài Gòn</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-3 accuracy quality">
+            <!-- 3 -->
+            <div class="affa-portfolio">
+                <figure class="post-thumbnail post-item-thumbnail img-hover3">
+                    <img src="@Url.Content("~/Content/")images/content/portfolios/thumb/3.jpg" alt="Tablet Smart Cover">
+                    <img src="@Url.Content("~/Content/")images/content/icon/icon_hot.png" alt="hot" class="icon-hot">
+                    <div class="overlay-masked">
+                        <a href="#" class="link-left" title="Live Preview"><i class="ion ion-eye"></i></a>
+                        <a href="#" class="link-right" title="More Details"><i class="ion ion-android-open"></i></a>
+                    </div>
+                </figure>
+                <div class="post-item-txt">
+                    <h4 class="entry-title post-item-title">
+                        <a href="#">Nhà Xe Dương Linh</a>
+                    </h4>
+                    <div class="entry-meta post-item-meta">
+                        <a href="#">Nghệ An</a> <span>-</span> <a href="#">Thanh Hóa</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-3 print vip hot">
+            <!-- 4 -->
+            <div class="affa-portfolio">
+                <figure class="post-thumbnail post-item-thumbnail img-hover3">
+                    <img src="@Url.Content("~/Content/")images/content/portfolios/thumb/4.jpg" alt="Maniac Typeface">
+                    <img src="@Url.Content("~/Content/")images/content/icon/icon_hot.png" alt="hot" class="icon-hot">
+                    <div class="overlay-masked">
+                        <a href="#" class="link-left" title="Live Preview"><i class="ion ion-eye"></i></a>
+                        <a href="#" class="link-right" title="More Details"><i class="ion ion-android-open"></i></a>
+                    </div>
+                </figure>
+                <div class="post-item-txt">
+                    <h4 class="entry-title post-item-title">
+                        <a href="#">Nhà Xe Hân Trang</a>
+                    </h4>
+                    <div class="entry-meta post-item-meta">
+                        <a href="#">Thanh Hóa</a> <span>-</span> <a href="#">Hà Nội</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-3 new">
+            <!-- 5 -->
+            <div class="affa-portfolio">
+                <figure class="post-thumbnail post-item-thumbnail img-hover3">
+                    <img src="@Url.Content("~/Content/")images/content/portfolios/thumb/5.jpg" alt="Pale Skin Apparel">
+                    <div class="overlay-masked">
+                        <a href="#" class="link-left" title="Live Preview"><i class="ion ion-eye"></i></a>
+                        <a href="#" class="link-right" title="More Details"><i class="ion ion-android-open"></i></a>
+                    </div>
+                </figure>
+                <div class="post-item-txt">
+                    <h4 class="entry-title post-item-title">
+                        <a href="#">Nhà Xe Hồng Hạnh</a>
+                    </h4>
+                    <div class="entry-meta post-item-meta">
+                        <a href="#">Sài Gòn</a> <span>-</span> <a href="#">Nha Trang</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-3 vip goodies">
+            <!-- 6 -->
+            <div class="affa-portfolio">
+                <figure class="post-thumbnail post-item-thumbnail img-hover3">
+                    <img src="@Url.Content("~/Content/")images/content/portfolios/thumb/6.jpg" alt="Vimeo FX Showreel">
+                    <div class="overlay-masked">
+                        <a href="#" class="link-left" title="Live Preview"><i class="ion ion-eye"></i></a>
+                        <a href="#" class="link-right" title="More Details"><i class="ion ion-android-open"></i></a>
+                    </div>
+                </figure>
+                <div class="post-item-txt">
+                    <h4 class="entry-title post-item-title">
+                        <a href="#">Nhà Xe Việt Xô</a>
+                    </h4>
+                    <div class="entry-meta post-item-meta">
+                        <a href="#">Hà Nội </a> <span>-</span> <a href="#">Quảng trị</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-3 print new">
+            <!-- 7 -->
+            <div class="affa-portfolio">
+                <figure class="post-thumbnail post-item-thumbnail img-hover3">
+                    <img src="@Url.Content("~/Content/")images/content/portfolios/thumb/7.jpg" alt="Olivera Note">
+                    <div class="overlay-masked">
+                        <a href="#" class="link-left" title="Live Preview"><i class="ion ion-eye"></i></a>
+                        <a href="#" class="link-right" title="More Details"><i class="ion ion-android-open"></i></a>
+                    </div>
+                </figure>
+                <div class="post-item-txt">
+                    <h4 class="entry-title post-item-title">
+                        <a href="#">Nhà Xe Lương Trang</a>
+                    </h4>
+                    <div class="entry-meta post-item-meta">
+                        <a href="#">Hà Nội</a> <span>-</span> <a href="#">Hà Tĩnh</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-3 vip quality">
+            <!-- 8 -->
+            <div class="affa-portfolio">
+                <figure class="post-thumbnail post-item-thumbnail img-hover3">
+                    <img src="@Url.Content("~/Content/")images/content/portfolios/thumb/8.jpg" alt="Stockholm Fashion">
+                    <div class="overlay-masked">
+                        <a href="#" class="link-left" title="Live Preview"><i class="ion ion-eye"></i></a>
+                        <a href="#" class="link-right" title="More Details"><i class="ion ion-android-open"></i></a>
+                    </div>
+                </figure>
+                <div class="post-item-txt">
+                    <h4 class="entry-title post-item-title">
+                        <a href="#">Nhà Xe Bình Hạnh</a>
+                    </h4>
+                    <div class="entry-meta post-item-meta">
+                        <a href="#">Đồng Nai </a> <span>-</span> <a href="#">Gia Lai</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-3 accuracy quality">
+            <!-- 9 -->
+            <div class="affa-portfolio">
+                <figure class="post-thumbnail post-item-thumbnail img-hover3">
+                    <img src="@Url.Content("~/Content/")images/content/portfolios/thumb/9.jpg" alt="Tablet Smart Cover">
+                    <div class="overlay-masked">
+                        <a href="#" class="link-left" title="Live Preview"><i class="ion ion-eye"></i></a>
+                        <a href="#" class="link-right" title="More Details"><i class="ion ion-android-open"></i></a>
+                    </div>
+                </figure>
+                <div class="post-item-txt">
+                    <h4 class="entry-title post-item-title">
+                        <a href="#">Nhà Xe Tiến Tiến</a>
+                    </h4>
+                    <div class="entry-meta post-item-meta">
+                        <a href="#">Hà Nội</a> <span>-</span> <a href="#">Cửa lò</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-3 print hot">
+            <!-- 10 -->
+            <div class="affa-portfolio">
+                <figure class="post-thumbnail post-item-thumbnail img-hover3">
+                    <img src="@Url.Content("~/Content/")images/content/portfolios/thumb/10.jpg" alt="Maniac Typeface">
+                    <div class="overlay-masked">
+                        <a href="#" class="link-left" title="Live Preview"><i class="ion ion-eye"></i></a>
+                        <a href="#" class="link-right" title="More Details"><i class="ion ion-android-open"></i></a>
+                    </div>
+                </figure>
+                <div class="post-item-txt">
+                    <h4 class="entry-title post-item-title">
+                        <a href="#">Nhà Xe Mạnh Hà</a>
+                    </h4>
+                    <div class="entry-meta post-item-meta">
+                        <a href="#">Gia Lai</a> <span>-</span> <a href="#">Thanh Hóa</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-3 new">
+            <!-- 11 -->
+            <div class="affa-portfolio">
+                <figure class="post-thumbnail post-item-thumbnail img-hover3">
+                    <img src="@Url.Content("~/Content/")images/content/portfolios/thumb/11.jpg" alt="Pale Skin Apparel">
+                    <div class="overlay-masked">
+                        <a href="#" class="link-left" title="Live Preview"><i class="ion ion-eye"></i></a>
+                        <a href="#" class="link-right" title="More Details"><i class="ion ion-android-open"></i></a>
+                    </div>
+                </figure>
+                <div class="post-item-txt">
+                    <h4 class="entry-title post-item-title">
+                        <a href="#">Nhà Xe Mỹ Hạnh</a>
+                    </h4>
+                    <div class="entry-meta post-item-meta">
+                        <a href="#">Hà Nội</a> <span>-</span> <a href="#">Nam Định</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-3 vip goodies">
+            <!-- 12 -->
+            <div class="affa-portfolio">
+                <figure class="post-thumbnail post-item-thumbnail img-hover3">
+                    <img src="@Url.Content("~/Content/")images/content/portfolios/thumb/12.jpg" alt="Vimeo FX Showreel">
+                    <div class="overlay-masked">
+                        <a href="#" class="link-left" title="Live Preview"><i class="ion ion-eye"></i></a>
+                        <a href="#" class="link-right" title="More Details"><i class="ion ion-android-open"></i></a>
+                    </div>
+                </figure>
+                <div class="post-item-txt">
+                    <h4 class="entry-title post-item-title">
+                        <a href="#">Nhà Xe Hùng Mai</a>
+                    </h4>
+                    <div class="entry-meta post-item-meta">
+                        <a href="#">Nam Định</a> <span>-</span> <a href="#">Ninh Bình</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <input type="button" name="button" onclick="window.location='listCar.html';" class="btn-round" value="Xem thêm" style="width:100%;text-align:center">
+    </div>
+    <!-- .row end -->
+
+</div>
+<!-- #portfolio end -->
+<div class="bg-color text-white padding-top40 padding-bottom40">
+
+    <!-- .container -->
+    <div class="container">
+
+        <div class="affa-call-action2">
+            <div class="call-action-txt">
+                <h2>Bạn muốn xác thực xe của mình ?</h2>
+                <p>Hãy liên lạc với chúng tôi ngay bây giờ .</p>
+            </div>
+            <div class="call-action-btn">
+                <a href="#" class="btn-custom btn-border btn-white" data-toggle="modal" data-target="#smallModal">Xác thực ngay</a>
+            </div>
+        </div>
+        <div class="modal fade" id="smallModal" role="dialog" tabindex="-1" aria-labelledby="smallModalLabel">
+            <!-- 1 -->
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="smallModalLabel" style="color:black">Modal title</h4>
+                    </div>
+                    <div class="modal-body" style="color:black">
+                        <p>Body content here....</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn-grey" data-dismiss="modal">Close</button>
+                        <button type="button">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+    
+<!-- .container end -->
+<!-- #features3 -->
+<div id="features3" data-parallax="scroll" data-speed="0.2" data-natural-width="1920" data-natural-height="1080" data-image-src="@Url.Content("~/Content/")images/content/bg/1.jpg">
+    <div class="bg-dark-overlay90 text-white padding-top100 padding-bottom60">
+        <!-- .container -->
+        <div class="container">
+            <!-- .row -->
+            <div class="row">
+                <!-- .col -->
+                <div class="col-sm-6">
+                    <h4 class="text-uppercase margin-bottom40">Tại sao nên sử dụng daxe.vn?</h4>
+                    <div class="panel-group affa-panel-group margin-bottom40" id="accordion" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingOne">
+                                <h4 class="panel-title">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Tiết kiệm thời gian</a>
+                                </h4>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                <div class="panel-body">
+                                    <p>
+                                        Vì sao nên đặt vé xe trước cho chuyến đi của mình? Bạn đã bao giờ đặt ra câu hỏi này và trả lời hay chưa?
+                                        Chỉ bằng những thao tác đơn giản trên máy tính hay gọi điện thoại trực tiếp cho các cơ sở cung cấp dịch vụ vé xe, bạn đã dễ dàng tìm hiểu các thông tin cần thiết về tuyến xe, lộ trình, kích cỡ xe, giờ chạy, giá vé hay những ưu đãi của nhà xe.
+                                        Mạng internet, điện thoại và điện thoại smartphone ngày càng phổ biến và trở thành vật dụng quen thuộc của rất nhiều người,
+                                        chính vì thế việc đặt vé trên website là việc không hề khó khăn.
+                                    </p>
+                                    <p>
+                                        Thay vì phải đến tận bến xe, chờ đợi, xếp hàng tốn nhiều công sức để chỉ mua một tấm vé thì chỉ bằng những cú click chuột hay một cuộc gọi điện thoại đơn giản bạn đã có thể sở hữu một tấm vé như mong muốn cho chuyến đi của mình.
+                                        Trong nhiều trường hợp, không phải đến tận bến xe mà bạn đều mua được vé như mong muốn.
+                                        Nếu bạn đến không đúng thời điểm có thể hết vé, hết chuyến và bạn không thể có chuyến đi theo đúng lịch trình mong muốn.
+                                    </p>
+                                    <p>
+                                        Bạn vừa tiết kiệm được thời gian vừa tiết kiệm được tiền bạc cũng như công sức của mình, với khoảng thời gian tiết kiệm được ấy, bạn có thể làm nhiều việc khác cũng như dành nhiều thời gian hơn cho những người thân yêu xung quanh mình.
+                                        Đó sẽ là một điều tuyệt vời trả lời giúp bạn câu hỏi vì sao nên đặt vé trước cho chuyến đi của mình.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingTwo">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Yên tâm về giá cả cũng như chất lượng</a>
+                                </h4>
+                            </div>
+                            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                <div class="panel-body">
+                                    <p>
+                                        Khi đặt vé xe trước, bạn có thể khảo sát trước và so sánh giá của các nhà xe cùng tuyến đường để lựa chọn nhà xe có chất lượng và giá cả phù hợp nhất với chuyến đi của mình. Bằng việc tìm hiểu thông tin về các hãng xe cũng như so sánh giá vé mà họ cung cấp,
+                                        bạn sẽ dễ dàng chọn lựa một mức giá phù hợp với mức chi trả của mình.Cũng như thế, bạn cũng không sẽ lo bị tăng giá vé khi lên xe. Vào các dịp nghỉ lễ, Tết hay các kỳ nghỉ dài, mùa du lịch... nhiều nhà xe thường tăng giá bất thình lình,
+                                        có khi tăng gấp rưỡi, thậm chí gấp đôi so với bình thường. Khi đặt vé trước trên các website cung cấp dịch vụ vé xe khách, bạn sẽ phải chi trả mức giá ổn định và khi đã đặt mua vé trước các nhà xe cũng không có quyền tăng giá vé xe của bạn.
+                                        Đây là một trong những ưu thế vì sao nên đặt vé xe trước cho chuyến đi của mình.
+                                    </p>
+                                    <p>
+                                        Các website cung cấp vé xe khách sẽ có sự chọn lựa kỹ càng trong quá trình hợp tác với các hãng xe khách,
+                                        vì vậy bạn có thể tin tưởng những hãng xe khách mà mình lựa chọn. Bởi những thông tin chi tiết mà họ cung cấp,
+                                        bạn sẽ có lựa chọn phù hợp và hoàn toàn yên tâm với sự lựa chọn của mình
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingThree">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Những kế hoạch kỹ lưỡng và cẩn thận luôn tạo nên thành công</a>
+                                </h4>
+                            </div>
+                            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                <div class="panel-body">
+                                    <p>
+                                        Trong tất cả các công việc, nếu có sự chuẩn bị tốt nhất định bạn sẽ thực hiện dễ dàng hơn và khả năng tạo nên thành công sẽ cao hơn.
+                                        Một chuyến công tác xa, đi về quê hay đi du lịch được lên kế hoạch rõ ràng, được chuẩn bị kỹ lưỡng thì nhất định sẽ dễ dàng hơn rất nhiều.
+                                        Bạn sẽ không còn phải lo lắng là mình có mua được vé xe hay không mà chỉ cần chuẩn bị những điều cần thiết khác cho chuyến đi của mình.
+                                    </p>
+                                    <p>
+                                        Nếu bạn đặt vé xe trước cho chuyến đi của mình, bạn sẽ lên được kế hoạch cho chuyến đi một cách tỉ mỉ, hợp lý nhất, các công việc khác cũng vì thế mà dễ dàng thực hiện hơn rất nhiều.
+                                        Giả sử bạn đã xác định chuyến đi của mình mà khi ra bến xe lại không tìm được xe phù hợp hoặc hết vé, hết chuyến thì kế hoạch công việc sẽ bị đình trệ như thế nào?
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- .col end -->
+                <!-- .col -->
+                <div class="col-sm-6">
+                    <h4 class="text-uppercase margin-bottom40">Thống kê tại Daxe.vn</h4>
+                    <div class="affa-progress-bar">
+                        <!-- 1 -->
+                        <p>Sinh viên tại Hà nội sử dụng DAXE.VN</p>
+                        <div class="progress-bar-line in">
+                            <div class="bar-line-overlay" style="width:90%;">90%</div>
+                            <span class="bar-line-val" style="left:90%;"><i>90</i>%</span>
+                        </div>
+                    </div>
+                    <div class="affa-progress-bar">
+                        <!-- 2 -->
+                        <p>Số lượng xe khách tại Hà nội có liên kết với DAXE.VN</p>
+                        <div class="progress-bar-line in">
+                            <div class="bar-line-overlay" style="width:85%;">85%</div>
+                            <span class="bar-line-val" style="left:85%;"><i>85</i>%</span>
+                        </div>
+                    </div>
+                    <div class="affa-progress-bar">
+                        <!-- 3 -->
+                        <p>Phản hồi tốt từ hành khách</p>
+                        <div class="progress-bar-line in">
+                            <div class="bar-line-overlay" style="width:95%;">95%</div>
+                            <span class="bar-line-val" style="left:95%;"><i>95</i>%</span>
+                        </div>
+                    </div>
+                    <div class="affa-progress-bar">
+                        <!-- 4 -->
+                        <p>Số lượng người dùng tăng lên hàng ngày</p>
+                        <div class="progress-bar-line in">
+                            <div class="bar-line-overlay" style="width:90%;">20%</div>
+                            <span class="bar-line-val" style="left:90%;"><i>20</i>%</span>
+                        </div>
+                    </div>
+                    <div class="affa-progress-bar">
+                        <!-- 5 -->
+                        <p>Doanh thu khi sử dụng ứng dụng của chúng tôi</p>
+                        <div class="progress-bar-line in">
+                            <div class="bar-line-overlay" style="width:80%;">50%</div>
+                            <span class="bar-line-val" style="left:80%;"><i>50</i>%</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- .col end -->
+            </div>
+            <!-- .row end -->
+        </div>
+        <!-- .container end -->
+    </div>
+</div>
+<!-- #features3 end -->
+<!-- #highlight -->
+<div id="highlight" class="bg-grey section-wrap" style="background-image:url(@Url.Content("~/Content/")images/content/bg/5.jpg);">
+    <div class="bg-white-overlay90 padding-top80">
+        <!-- .container -->
+        <div class="container">
+            <div class="post-heading-center">
+                <h2>Thống kê tại DAXE.VN</h2>
+            </div>
+            <!-- .row -->
+            <div class="row row-counter animation" data-animation="animation-fade-in">
+                <div class="col-sm-4">
+                    <!-- 2 -->
+                    <div class="affa-counter">
+                        <h4><span>1.000</span>+</h4>
+                        <i class="ion ion-android-favorite-outline"></i>
+                        <p>Lượt khách sử dụng mỗi ngày</p>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <!-- 3 -->
+                    <div class="affa-counter">
+                        <h4><span>500</span>+</h4>
+                        <i class="ion ion-clipboard"></i>
+                        <p>Xe đã đăng ký</p>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <!-- 4 -->
+                    <div class="affa-counter">
+                        <h4><span>100</span>+</h4>
+                        <i class="ion ion-flash"></i>
+                        <p>Công ty vận tải đăng ký</p>
+                    </div>
+                </div>
+            </div>
+            <!-- .row end -->
+            <!-- <figure class="margin-top20 animation" data-animation="animation-slide-in-up">
+                <img src="images/content/landing/feature-highlight.png" alt="Image">
+            </figure> -->
+        </div>
+        <!-- .container end -->
+    </div>
+</div>
+<!-- #highlight end -->
+<!-- #testimonials -->
+<div id="testimonials" class="padding-top60 padding-bottom60 testimonial">
+    <!-- .container -->
+    <div class="container">
+        <!-- .carousel-slider -->
+        <div class="carousel-slider carousel-testimonials">
+            <div class="slick-slide">
+                <!-- 1 -->
+                <div class="affa-testimonial">
+                    <p>"Daxe.vn là một sản phẩm tốt đã giúp cho chúng tôi tăng lợi nhuận một cách chính đáng và tăng khả năng cạnh tranh đối với các đối thủ."</p>
+                    <h4>Hồ Thị Hoàng, <span>GĐ công ty xe khách Hoàng Phương</span></h4>
+                </div>
+            </div>
+            <div class="slick-slide">
+                <!-- 2 -->
+                <div class="affa-testimonial">
+                    <p>"Daxe.vn đã mang lại cho tôi thực sự tiết kiệm thời gian trong những lúc đặt xe và đăng ký vé xe để đi lại hàng tuần khi về quê với gia đình."</p>
+                    <h4>Phan Tuấn Linh, <span>Sinh viên ĐHBK HN</span></h4>
+                </div>
+            </div>
+            <div class="slick-slide">
+                <!-- 3 -->
+                <div class="affa-testimonial">
+                    <p>"Daxe.vn đã cho tôi có thể đánh giá được chất lượng của dịch vụ xe và nâng cao chất lượng cho các đơn vị cung cấp vận tải."</p>
+                    <h4>Phạm Thùy Linh, <span>Hunter Talent Group</span></h4>
+                </div>
+            </div>
+        </div>
+        <!-- .carousel-slider end -->
+    </div>
+    <!-- .container end -->
+</div>
+<!-- #testimonials end -->
+<!-- #blog -->
+<div id="blog" class="bg-grey padding-top80 padding-bottom80">
+    <!-- .container -->
+    <div class="container">
+        <div class="post-heading-center">
+            <h2>Tin mới</h2>
+            <p>Luôn luôn cập nhật thông tin từ hành khách đi xe để đảm bảo tốt nhất cho dịch vụ của bạn</p>
+        </div>
+        <!-- .carousel-slider -->
+        <div class="carousel-slider carousel-dots carousel-dots-4col carousel-posts row">
+            <div class="col-sm-3">
+                <!-- 1 -->
+                <div class="affa-post">
+                    <figure class="post-thumbnail post-item-thumbnail img-hover2">
+                        <a href="#">
+                            <img src="@Url.Content("~/Content/")images/content/blog/thumb/1.jpg" alt="Transitions In UX Design">
+                            <div class="overlay-masked">
+                                <i class="ion ion-eye"></i>
+                            </div>
+                        </a>
+                    </figure>
+                    <div class="post-item-txt">
+                        <h4 class="entry-title post-item-title">
+                            <a href="#">Giá xăng giảm mạnh , khiến cho các nhà xe bắt đầu giảm giá vé xe khách</a>
+                        </h4>
+                        <div class="entry-content post-item-content">
+                            <p>Hiện nay do dịch vụ xăng dầu đang có xu hướng giảm giá thành vì thế các nhà xe cũng phải giảm theo giá thành của xăng để hợp lí cho khách hàng mà không bị phàn nàn!</p>
+                        </div>
+                        <div class="entry-meta post-item-meta">
+                            <p>Tháng 10, 2017</p>
+                            <a href="#" class="more-link">Xem tiếp</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <!-- 2 -->
+                <div class="affa-post">
+                    <figure class="post-thumbnail post-item-thumbnail img-hover2">
+                        <a href="#">
+                            <img src="@Url.Content("~/Content/")images/content/blog/thumb/2.jpg" alt="Supernatural FX Showreel">
+                            <div class="overlay-masked">
+                                <i class="ion ion-eye"></i>
+                            </div>
+                        </a>
+                    </figure>
+                    <div class="post-item-txt">
+                        <h4 class="entry-title post-item-title">
+                            <a href="#">Chiến lược kinh doanh , giá vé 0 đồng , tại sao không ?</a>
+                        </h4>
+                        <div class="entry-content post-item-content">
+                            <p>Maecenas iaculis leo sit amet tempor est nullam et viverra urna, sit amet eleifend leo nunca. Curabitur porta quam sit amet nuc semper diam voluptua....</p>
+                        </div>
+                        <div class="entry-meta post-item-meta">
+                            <p>Tháng 11, 2017</p>
+                            <a href="#" class="more-link">Xem tiếp</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <!-- 3 -->
+                <div class="affa-post">
+                    <figure class="post-thumbnail post-item-thumbnail img-hover2">
+                        <a href="#">
+                            <img src="@Url.Content("~/Content/")images/content/blog/thumb/3.jpg" alt="Recent Storytelling Trends">
+                            <div class="overlay-masked">
+                                <i class="ion ion-eye"></i>
+                            </div>
+                        </a>
+                    </figure>
+                    <div class="post-item-txt">
+                        <h4 class="entry-title post-item-title">
+                            <a href="#">Các kinh nghiệm cho người say tàu xe</a>
+                        </h4>
+                        <div class="entry-content post-item-content">
+                            <p>Maecenas iaculis leo sit amet tempor est nullam et viverra urna, sit amet eleifend leo nunca. Curabitur porta quam sit amet nuc semper diam voluptua....</p>
+                        </div>
+                        <div class="entry-meta post-item-meta">
+                            <p>Tháng 12, 2017</p>
+                            <a href="#" class="more-link">Xem tiếp</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <!-- 4 -->
+                <div class="affa-post">
+                    <figure class="post-thumbnail post-item-thumbnail img-hover2">
+                        <a href="#">
+                            <img src="@Url.Content("~/Content/")images/content/blog/thumb/4.jpg" alt="Portugal 2017 Trip Gallery">
+                            <div class="overlay-masked">
+                                <i class="ion ion-eye"></i>
+                            </div>
+                        </a>
+                    </figure>
+                    <div class="post-item-txt">
+                        <h4 class="entry-title post-item-title">
+                            <a href="#">Làm sao để trở thành đối tác của chúng tôi ?</a>
+                        </h4>
+                        <div class="entry-content post-item-content">
+                            <p>Maecenas iaculis leo sit amet tempor est nullam et viverra urna, sit amet eleifend leo nunca. Curabitur porta quam sit amet nuc semper diam voluptua....</p>
+                        </div>
+                        <div class="entry-meta post-item-meta">
+                            <p>March 10, 2017</p>
+                            <a href="#" class="more-link">Xem tiếp</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <!-- 5 -->
+                <div class="affa-post">
+                    <figure class="post-thumbnail post-item-thumbnail img-hover2">
+                        <a href="#">
+                            <img src="@Url.Content("~/Content/")images/content/blog/thumb/5.jpg" alt="A Quick Status Update">
+                            <div class="overlay-masked">
+                                <i class="ion ion-eye"></i>
+                            </div>
+                        </a>
+                    </figure>
+                    <div class="post-item-txt">
+                        <h4 class="entry-title post-item-title">
+                            <a href="#">Xe chúng tôi không làm tắc đường, sao chuyển tuyến?</a>
+                        </h4>
+                        <div class="entry-content post-item-content">
+                            <p>Tại sao không ảnh hưởng đến tắc đường mà điều chuyển tuyến - bà Hồ Thị Hoàng, GĐ công ty xe khách Hoàng Phương hỏi lãnh đạo Bộ GTVT và Sở GTVT Hà Nội...</p>
+                        </div>
+                        <div class="entry-meta post-item-meta">
+                            <p>March 10, 2017</p>
+                            <a href="#" class="more-link">readmore</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <!-- 6 -->
+                <div class="affa-post">
+                    <figure class="post-thumbnail post-item-thumbnail img-hover2">
+                        <a href="#">
+                            <img src="@Url.Content("~/Content/")images/content/blog/thumb/6.jpg" alt="Free Notebook Photos">
+                            <div class="overlay-masked">
+                                <i class="ion ion-eye"></i>
+                            </div>
+                        </a>
+                    </figure>
+                    <div class="post-item-txt">
+                        <h4 class="entry-title post-item-title">
+                            <a href="#">Free Notebook Photos</a>
+                        </h4>
+                        <div class="entry-content post-item-content">
+                            <p>Maecenas iaculis leo sit amet tempor est nullam et viverra urna, sit amet eleifend leo nunca. Curabitur porta quam sit amet nuc semper diam voluptua....</p>
+                        </div>
+                        <div class="entry-meta post-item-meta">
+                            <p>March 10, 2017</p>
+                            <a href="#" class="more-link">readmore</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <!-- 7 -->
+                <div class="affa-post">
+                    <figure class="post-thumbnail post-item-thumbnail img-hover2">
+                        <a href="#">
+                            <img src="@Url.Content("~/Content/")images/content/blog/thumb/7.jpg" alt="The Astronauts Rule!">
+                            <div class="overlay-masked">
+                                <i class="ion ion-eye"></i>
+                            </div>
+                        </a>
+                    </figure>
+                    <div class="post-item-txt">
+                        <h4 class="entry-title post-item-title">
+                            <a href="#">The Astronauts Rule!</a>
+                        </h4>
+                        <div class="entry-content post-item-content">
+                            <p>Maecenas iaculis leo sit amet tempor est nullam et viverra urna, sit amet eleifend leo nunca. Curabitur porta quam sit amet nuc semper diam voluptua....</p>
+                        </div>
+                        <div class="entry-meta post-item-meta">
+                            <p>March 10, 2017</p>
+                            <a href="#" class="more-link">readmore</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <!-- 8 -->
+                <div class="affa-post">
+                    <figure class="post-thumbnail post-item-thumbnail img-hover2">
+                        <a href="#">
+                            <img src="@Url.Content("~/Content/")images/content/blog/thumb/8.jpg" alt="Notebook Photo Series">
+                            <div class="overlay-masked">
+                                <i class="ion ion-eye"></i>
+                            </div>
+                        </a>
+                    </figure>
+                    <div class="post-item-txt">
+                        <h4 class="entry-title post-item-title">
+                            <a href="#">Notebook Photo Series</a>
+                        </h4>
+                        <div class="entry-content post-item-content">
+                            <p>Maecenas iaculis leo sit amet tempor est nullam et viverra urna, sit amet eleifend leo nunca. Curabitur porta quam sit amet nuc semper diam voluptua....</p>
+                        </div>
+                        <div class="entry-meta post-item-meta">
+                            <p>March 10, 2017</p>
+                            <a href="#" class="more-link">readmore</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <!-- 9 -->
+                <div class="affa-post">
+                    <figure class="post-thumbnail post-item-thumbnail img-hover2">
+                        <a href="#">
+                            <img src="@Url.Content("~/Content/")images/content/blog/thumb/9.jpg" alt="2017 Shoe Design Trends">
+                            <div class="overlay-masked">
+                                <i class="ion ion-eye"></i>
+                            </div>
+                        </a>
+                    </figure>
+                    <div class="post-item-txt">
+                        <h4 class="entry-title post-item-title">
+                            <a href="#">2017 Shoe Design Trends</a>
+                        </h4>
+                        <div class="entry-content post-item-content">
+                            <p>Maecenas iaculis leo sit amet tempor est nullam et viverra urna, sit amet eleifend leo nunca. Curabitur porta quam sit amet nuc semper diam voluptua....</p>
+                        </div>
+                        <div class="entry-meta post-item-meta">
+                            <p>March 10, 2017</p>
+                            <a href="#" class="more-link">readmore</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- .carousel-slider end -->
+    </div>
+    <!-- .container end -->
+</div>
+<!-- #blog end -->
+<!-- #clients -->
+<div id="clients" class="padding-top60 padding-bottom60">
+    <!-- .container -->
+    <div class="container">
+        <!-- .carousel-slider -->
+        <div class="carousel-slider carousel-draggable carousel-clients row">
+            <div class="col-sm-2">
+                <!-- 1 -->
+                <div class="affa-client-logo">
+                    <img src="@Url.Content("~/Content/")images/content/clients/1.png" alt="Logo">
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <!-- 2 -->
+                <div class="affa-client-logo">
+                    <img src="@Url.Content("~/Content/")images/content/clients/2.png" alt="Logo">
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <!-- 3 -->
+                <div class="affa-client-logo">
+                    <img src="@Url.Content("~/Content/")images/content/clients/3.png" alt="Logo">
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <!-- 4 -->
+                <div class="affa-client-logo">
+                    <img src="@Url.Content("~/Content/")images/content/clients/4.png" alt="Logo">
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <!-- 5 -->
+                <div class="affa-client-logo">
+                    <img src="@Url.Content("~/Content/")images/content/clients/5.png" alt="Logo">
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <!-- 6 -->
+                <div class="affa-client-logo">
+                    <img src="@Url.Content("~/Content/")images/content/clients/6.png" alt="Logo">
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <!-- 7 -->
+                <div class="affa-client-logo">
+                    <img src="@Url.Content("~/Content/")images/content/clients/1.png" alt="Logo">
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <!-- 8 -->
+                <div class="affa-client-logo">
+                    <img src="@Url.Content("~/Content/")images/content/clients/2.png" alt="Logo">
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <!-- 9 -->
+                <div class="affa-client-logo">
+                    <img src="@Url.Content("~/Content/")images/content/clients/3.png" alt="Logo">
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <!-- 10 -->
+                <div class="affa-client-logo">
+                    <img src="@Url.Content("~/Content/")images/content/clients/4.png" alt="Logo">
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <!-- 11 -->
+                <div class="affa-client-logo">
+                    <img src="@Url.Content("~/Content/")images/content/clients/5.png" alt="Logo">
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <!-- 12 -->
+                <div class="affa-client-logo">
+                    <img src="@Url.Content("~/Content/")images/content/clients/6.png" alt="Logo">
+                </div>
+            </div>
+        </div>
+        <!-- .carousel-slider end -->
+    </div>
+    <!-- .container end -->
+</div>
+<!-- #clients end -->
+<!-- #buynow -->
+<!-- #buynow -->
+<!-- #bottom -->
