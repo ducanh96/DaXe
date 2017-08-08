@@ -25,12 +25,12 @@ namespace DaXe.Areas.Admin.Models.DaXeDB
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Table_Car> Table_Car { get; set; }
         public virtual DbSet<Table_CarOwner> Table_CarOwner { get; set; }
         public virtual DbSet<Table_DetailedRoadmap> Table_DetailedRoadmap { get; set; }
         public virtual DbSet<Table_Driver> Table_Driver { get; set; }
         public virtual DbSet<Table_Order> Table_Order { get; set; }
         public virtual DbSet<Table_Route> Table_Route { get; set; }
         public virtual DbSet<Table_User> Table_User { get; set; }
+        public virtual DbSet<Table_Car> Table_Car { get; set; }
     }
 }

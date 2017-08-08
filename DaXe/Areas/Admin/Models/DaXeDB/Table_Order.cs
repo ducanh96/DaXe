@@ -19,7 +19,7 @@ namespace DaXe.Areas.Admin.Models.DaXeDB
         public Nullable<System.DateTime> DateTime { get; set; }
         public Nullable<int> Number { get; set; }
     
-        public virtual Table_Car Table_Car { get; set; }
         public virtual Table_User Table_User { get; set; }
+        public virtual Table_Car Table_Car { get; set; }
     }
 }

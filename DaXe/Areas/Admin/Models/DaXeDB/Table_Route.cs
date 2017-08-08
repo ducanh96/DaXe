@@ -26,8 +26,8 @@ namespace DaXe.Areas.Admin.Models.DaXeDB
         public string Address { get; set; }
         public Nullable<int> IDCar { get; set; }
     
-        public virtual Table_Car Table_Car { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Table_DetailedRoadmap> Table_DetailedRoadmap { get; set; }
+        public virtual Table_Car Table_Car { get; set; }
     }
 }

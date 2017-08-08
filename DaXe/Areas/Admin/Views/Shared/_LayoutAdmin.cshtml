@@ -310,6 +310,7 @@
 
     <!--common script for all pages-->
     <script src="@Url.Content("~/Areas/Admin/Content/")js/common-scripts.js"></script>
+    @RenderSection("scripts", required: false)
 
     <!--script for this page-->
 
@@ -317,7 +318,7 @@
       //custom select box
 
       $(function(){
-          $('select.styled').customSelect();
+         // $('select.styled').customSelect();
       });
 
     </script>

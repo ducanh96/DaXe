@@ -10,24 +10,9 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-10"></div>
-        <div class="col-md-2 pull-right">
-            <div class="btn-group">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Trạng thái <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Chưa phê duyệt</a></li>
-                    <li><a href="#">Đã phê duyệt</a></li>
-
-                </ul>
-            </div>
-        </div>
-    </div>
-    <table class="table">
-        <tr>
+<table class="table">
+    <thead>
+        @*<tr>
             <th>
                 @Html.DisplayNameFor(model => model.Image)
             </th>
@@ -41,7 +26,7 @@
                 @Html.DisplayNameFor(model => model.Category)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Old)
+                @Html.DisplayNameFor(model => model.Price)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.LevelCar)
@@ -52,50 +37,87 @@
             <th>
                 @Html.DisplayNameFor(model => model.Routes)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
             <th></th>
+        </tr>*@
+        <tr>
+            <th>Anh</th>
+            <th>Bien so</th>
+            <th>Tên</th>
+            <th>Loại xe</th>
+            <th>Gía</th>
+            <th>Đẳng cấp</th>
+            <th>Dịch vụ</th>
+            <th>Tuyến</th>
         </tr>
+    </thead>
+  <tbody></tbody>
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Image)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NumberPlates)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Category)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Old)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LevelCar)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Service)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Routes)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Status)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-                </td>
-            </tr>
-        }
+    
 
-    </table>
+@*@foreach (var item in Model) {
+    <tr>
+        
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}*@
 
-</div>
+</table>
+@*<script type="text/javascript">
+    var xhr = new XMLHttpRequest();
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            resposeObject = JSON.parse(xhr.responseText);
+            var newContent = '';
+
+            for (var i = 0; i < responseText.list.length; i++) {
+                var tr = document.createElement("tr");
+                var td = document.createElement("td");
+                tr.appendChild(td);
+                var text = document.createTextNode(responseText.list[i].Image);
+                td.appendChild(text);
+
+
+                var add = document.getElementsByTagName("tbody");
+                add.appendChild(tr);
+            };
+
+        };
+
+
+    };
+    xhr.open("Get", "/Admin/Table_Car/ListCarAdmin", true);
+    xhr.send(null);
+     
+</script>*@
+@section scripts{
+<script type="text/javascript">
+    $(function () {
+        $.ajax({
+            url: "@Url.Action("ListCarAdmin","Table_Car")",
+            type: "GET", // GET or POST
+            data: {}, // null data
+            dataType: "json",// expected type in return
+            success: function (data) {
+                debugger;
+                //var table = '<table><tr><th>FNAME</th><th>LNAME</th> <th>USERNAME</th><th>PASSWORD</th></tr>';
+                var table = '';
+                for (var i = 0; i < data.data.length; i++) {
+                    table += "<tr><td>" + data.data[i].Image + "</td><td>" + data.data[i].NumberPlates + "</td><td>" + data.data[i].Name + "</td><td>" + data.data[i].Category + "</td><td>" + data.data[i].Price + "</td></td>" + data.data[i].LevelCar + "</td><td>" + data.data[i].Service + "</td><td>" + data.data[i].Routes + "</td></tr>";
+                    
+                };
+                $("tbody").append(table);
+            }
+            ,
+            error: function (data) {
+                alert("Internal Server Error:\n" + data);
+            },
+        });
+    });
+        
+   
+</script>
+    }

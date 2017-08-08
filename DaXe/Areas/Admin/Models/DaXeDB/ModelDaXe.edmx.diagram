@@ -4,21 +4,21 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="da6e44118a444fcfb0c9c66689a0397b" Name="Diagram1">
-        <EntityTypeShape EntityType="DaXe.vnModel.Table_Car" Width="1.5" PointX="1.875" PointY="7.125" />
-        <EntityTypeShape EntityType="DaXe.vnModel.Table_CarOwner" Width="1.5" PointX="4.125" PointY="4" />
-        <EntityTypeShape EntityType="DaXe.vnModel.Table_DetailedRoadmap" Width="1.5" PointX="6.375" PointY="14.625" />
-        <EntityTypeShape EntityType="DaXe.vnModel.Table_Driver" Width="1.5" PointX="4.125" PointY="10.625" />
-        <EntityTypeShape EntityType="DaXe.vnModel.Table_Order" Width="1.5" PointX="7.125" PointY="7.75" />
-        <EntityTypeShape EntityType="DaXe.vnModel.Table_Route" Width="1.5" PointX="4.125" PointY="14.25" />
-        <EntityTypeShape EntityType="DaXe.vnModel.Table_User" Width="1.5" PointX="4.875" PointY="0.5" />
+      <Diagram DiagramId="3b31b14ba8674724bf82de473562321d" Name="Diagram1">
+        <EntityTypeShape EntityType="DaXe.vnModel.Table_CarOwner" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DaXe.vnModel.Table_DetailedRoadmap" Width="1.5" PointX="5.25" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DaXe.vnModel.Table_Driver" PointX="3" PointY="9" Width="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DaXe.vnModel.Table_Order" Width="1.5" PointX="6" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="DaXe.vnModel.Table_Route" Width="1.5" PointX="3" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DaXe.vnModel.Table_User" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="DaXe.vnModel.FK_Table_DetailedRoadmap_Table_Route" ManuallyRouted="false" />
+        <AssociationConnector Association="DaXe.vnModel.FK_Table_Order_Table_User" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DaXe.vnModel.Table_Car" Width="1.5" PointX="0.75" PointY="8.75" />
         <AssociationConnector Association="DaXe.vnModel.FK_Table_CarOwner_Table_Car" />
         <AssociationConnector Association="DaXe.vnModel.FK_Table_Driver_Table_Car" />
         <AssociationConnector Association="DaXe.vnModel.FK_Table_Oder_Table_Car" />
         <AssociationConnector Association="DaXe.vnModel.FK_Table_Route_Table_Car" />
-        <AssociationConnector Association="DaXe.vnModel.FK_Table_DetailedRoadmap_Table_Route" />
-        <AssociationConnector Association="DaXe.vnModel.FK_Table_Order_Table_User" />
-      </Diagram>
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
